@@ -1,46 +1,99 @@
-# Getting Started with Create React App
+# CSS UI Simulation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+:animation, box-shadow등 익숙하지 않은 css 프로퍼티를 쉽게 사용하기 위해 UI로 설정하고 확인할 수 있는 반응형 web
 
-## Available Scripts
+## Stack, lib
 
-In the project directory, you can run:
+- typescript
+- react-router
+- react-icons
+- extension
+  - prettier
+  - github copilot
 
-### `npm start`
+## 단일 Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## UI(Components)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Header
 
-### `npm test`
+  - Button
+    - navigation-on: navigation 목록을 출력하는 버튼
+    - history-on: history 목록을 출력하는 버튼
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Tab: 모바일 화면 크기에서는 컴포넌트를 확대
 
-### `npm run build`
+  - Left: navigation 목록
+    - Overlay
+    - List
+      - Item
+  - Right: history 목록
+    - Overlay
+    - Button
+      - 숨김: 해당 탭을 숨김
+      - 확대: 탭을 확대
+    - List
+      - Item: 접근한 프로퍼티 페이지, 복사한 프로퍼티 설정
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Main
+  - Box1: css 프로퍼티 설명
+  - Box2: css 프로퍼티 속성 값 제어(input)
+  - Screen: 설정된 css 프로퍼티 UI
+    - Button: 설정 값 복사
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 요구사항
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Logic
 
-### `npm run eject`
+history
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```javascript
+// localStorage data
+[
+  {
+    property: 'box-shadow',
+    copyValues: [],
+  },
+  {
+    property: 'width',
+    copyValues: ['100px', '100%'],
+  },
+];
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [ ] localStorage에 history 저장
+- [ ] navigation 클릭 시 history 저장
+- [ ] 프로퍼티를 복사하면 해당 프로퍼티와 속성 값 저장
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 기능
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Header
 
-## Learn More
+- [ ] Left-Tab이 비활성화일 때 nav 버튼 노출
+- [ ] Left-Tab이 활성화일 때 nav 버튼 숨김
+- [ ] nav 버튼을 누르면 Left-Tab 노출
+- [ ] history 버튼을 누르면 Right-Tab 노출
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Tab
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Left
+  - [ ] Overlay영역 클릭 시 해당 탭 숨김
+  - [ ] navigation 클릭 시 해당 css 변경
+  - [ ] navigation 클릭 시 해당 프로퍼티 페이지 연결
+- Right
+  - [ ] 숨김 버튼 클릭 시 해당 탭 숨김
+  - [ ] 확대 버튼 클릭 시 해당 탭 중앙 확대
+  - [ ] history는 접근한 페이지 [+ 복사한 프로퍼티]를 출력
+  - [ ] 목록에서 x/del 버튼을 누르면 해당 history 제거
+  - 목록을 무한스크롤 형태로 구현
+    - [ ] 목록을 최대 컴포넌트의 크기만큼 출력
+    - [ ] 출력하는 history가 컴포넌트의 크기를 넘어가면 버튼 클릭 or 스크롤을 내리면 load
+
+Main
+
+- [ ] Box1: 프로퍼티의 간단한 설명 출력
+- [ ] Box2: css 프로퍼티에 따라 필요한 input 입력으로 설정값 변경
+- [ ] Screen: Box2에서 설정한 값에 따라 실시간으로 변경되는 UI 출력
+- Screen의 복사 버튼 클릭 시
+  - [ ] 해당 css 프로퍼티와 속성값 복사
+  - [ ] window alert 메시지 출력
